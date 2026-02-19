@@ -1680,6 +1680,11 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 0 3px rgba(255,189,57,0.2);
 }
 
+.form-group select option {
+    color: var(--clr-dark);
+    background: var(--clr-white);
+}
+
 .form-group textarea {
     min-height: 120px;
     resize: vertical;
