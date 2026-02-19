@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rides & Entertainment | Queensland Amusement Hire</title>
+    <meta name="description" content="Explore our full range of amusement rides and entertainment for hire in Queensland. Thrill rides, family favourites, kids inflatables, games and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- SHARED: NAV START -->
+    <nav class="nav" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="https://www.qldamusementhire.com.au/wp-content/themes/qldamusementhire/images/Queensland-Amusement-Hire-logo.png" alt="Queensland Amusement Hire Logo">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="rides.html" class="active">Rides</a>
+                <a href="school-fetes.html">School Fetes</a>
+                <a href="safety.html">Safety</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <a href="tel:0415467929" class="nav-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0415 467 929</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <!-- SHARED: NAV END -->
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" style="background-image: url('https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/wave-swinger-400x300.jpg');">
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-sep">&rsaquo;</span>
+                <span>Rides &amp; Entertainment</span>
+            </nav>
+            <h1>Rides &amp; Entertainment</h1>
+            <p>From adrenaline-pumping thrill rides to gentle family favourites, explore our full range of attractions.</p>
+        </div>
+    </section>
+
+    <!-- RIDES & ENTERTAINMENT -->
+    <section class="section rides" id="rides">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-tag">Our Fleet</span>
+                <h2 class="section-title">Rides &amp;<br>Entertainment</h2>
+                <p class="section-subtitle">From adrenaline-pumping thrill rides to gentle family favourites, explore our full range of attractions.</p>
+            </div>
+
+            <div class="rides-filter reveal">
+                <button class="filter-btn active" data-filter="all">All Rides</button>
+                <button class="filter-btn" data-filter="thrill">Thrill</button>
+                <button class="filter-btn" data-filter="family">Family</button>
+                <button class="filter-btn" data-filter="kids">Kids &amp; Inflatables</button>
+                <button class="filter-btn" data-filter="games">Games &amp; Extras</button>
+            </div>
+
+            <div class="rides-grid" id="ridesGrid">
+                <!-- THRILL RIDES -->
+                <div class="ride-card reveal" data-category="thrill">
+                    <span class="ride-card-badge thrill">Thrill</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/wave-swinger-400x300.jpg" alt="Wave Swinger ride" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Wave Swinger</h3>
+                        <p>Glides 46 riders in a wave-like motion high above the crowd.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">600/hr</span>
+                            <span class="ride-meta-item">46 Seats</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="thrill">
+                    <span class="ride-card-badge thrill">Thrill</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/giant-ferris-wheel-hire-e1486272039300-400x300.jpg" alt="Giant Ferris Wheel" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Giant Ferris Wheel</h3>
+                        <p>Stunning colour-changing LED lights make this the centrepiece of any event.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">LED Lights</span>
+                            <span class="ride-meta-item">Centrepiece</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="thrill">
+                    <span class="ride-card-badge thrill">Thrill</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/hurricane-1-e1486272183491-400x300.jpg" alt="Hurricane ride" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Hurricane</h3>
+                        <p>Hoists 24 riders up a 12-metre tower for an adrenaline-pumping experience.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">300/hr</span>
+                            <span class="ride-meta-item">12m Tower</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="thrill">
+                    <span class="ride-card-badge thrill">Thrill</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cairnsshow-128-400x300.jpg" alt="Big Whizzer ride" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Big Whizzer</h3>
+                        <p>The fastest of its type available for hire in Queensland.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">450/hr</span>
+                            <span class="ride-meta-item">Fastest in QLD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="thrill">
+                    <span class="ride-card-badge thrill">Thrill</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/round-up-1.jpg" alt="Round-up ride" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Round-Up</h3>
+                        <p>Classic thrill ride with incredible spinning force. Min height 120cm.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">400/hr</span>
+                            <span class="ride-meta-item">120cm+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="thrill">
+                    <span class="ride-card-badge thrill">Thrill</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cyber-party-ride-400x261.jpg" alt="Cyber-Party ride" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Cyber-Party</h3>
+                        <p>Dance caf&eacute; style thrill ride with pumping music and lights.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">400/hr</span>
+                            <span class="ride-meta-item">120cm+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="thrill">
+                    <span class="ride-card-badge thrill">Thrill</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/alien-abduction-ride-e1486274030413-400x300.jpg" alt="Alien Abduction Gravitron" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Alien Abduction</h3>
+                        <p>Gravitron experience with incredible centrifugal force. Min height 120cm.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">400/hr</span>
+                            <span class="ride-meta-item">Gravitron</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAMILY RIDES -->
+                <div class="ride-card reveal" data-category="family">
+                    <span class="ride-card-badge family">Family</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/Lets-dance-400x295.jpg" alt="Let's Dance Music Trip" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Let's Dance (Music Trip)</h3>
+                        <p>Our newest attraction with an immersive music and dance experience.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">300/hr</span>
+                            <span class="ride-meta-item">120cm+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="family">
+                    <span class="ride-card-badge family">Family</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/dogem-cars-400x300.jpg" alt="Dodgem Cars" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Dodgem Cars</h3>
+                        <p>The true fete-goer favourite. Fun for the whole family. Min height 120cm.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">Classic</span>
+                            <span class="ride-meta-item">120cm+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="family">
+                    <span class="ride-card-badge family">Family</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/tea-cup-ride-e1486274157665.jpg" alt="Tea Cups ride" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Tea Cups</h3>
+                        <p>A timeless carnival favourite the whole family can enjoy together.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">200/hr</span>
+                            <span class="ride-meta-item">All Ages</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="family">
+                    <span class="ride-card-badge family">Family</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cairnsshow-162-400x300.jpg" alt="Super Jet Coaster" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Super Jet Coaster</h3>
+                        <p>Exclusive to QAH. An exciting coaster experience for the whole family.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">Exclusive</span>
+                            <span class="ride-meta-item">&lt;100kg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KIDS & INFLATABLES -->
+                <div class="ride-card reveal" data-category="kids">
+                    <span class="ride-card-badge kids">Kids</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/kids-platform-ride-400x300.jpg" alt="Kids Platform ride" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Kids Platform</h3>
+                        <p>Gentle fun designed specifically for our youngest thrill-seekers.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">Young Kids</span>
+                            <span class="ride-meta-item">Gentle</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="kids">
+                    <span class="ride-card-badge kids">Kids</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cairnsshow-047-400x300.jpg" alt="Jumbo Slide" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Jumbo Slide</h3>
+                        <p>The largest inflatable slide available for hire in Queensland. Unlimited capacity.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">Largest in QLD</span>
+                            <span class="ride-meta-item">Unlimited</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="kids">
+                    <span class="ride-card-badge kids">Kids</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/Heavy-Hauler-Slide-e1486270325614-400x300.jpg" alt="Heavy Hauler Slide" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Heavy Hauler Slide</h3>
+                        <p>Tonka-themed dump truck inflatable that kids absolutely love.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">Tonka Theme</span>
+                            <span class="ride-meta-item">Inflatable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GAMES & EXTRAS -->
+                <div class="ride-card reveal" data-category="games">
+                    <span class="ride-card-badge games">Games</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/neptuneracer-1-400x300.jpg" alt="Neptune Racer game" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Neptune Racer</h3>
+                        <p>Interactive racing game experience that gets the competitive juices flowing.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">Interactive</span>
+                            <span class="ride-meta-item">All Ages</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="games">
+                    <span class="ride-card-badge games">Games</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cairnsshow-152-400x300.jpg" alt="Laughing Clowns game" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Laughing Clowns</h3>
+                        <p>Set of 12 available on a profit-share basis. A timeless carnival classic.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">12 Units</span>
+                            <span class="ride-meta-item">Profit Share</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="games">
+                    <span class="ride-card-badge games">Games</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/bazooka-bash.jpg" alt="Bazooka Bash game" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Bazooka Bash</h3>
+                        <p>Skill-based game using air technology. Perfect for all ages and skill levels.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">Skill Game</span>
+                            <span class="ride-meta-item">Air Tech</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="games">
+                    <span class="ride-card-badge games">Games</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/festoon-light-hire.jpg" alt="Festoon Lighting" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Festoon Lighting</h3>
+                        <p>Traditional or RGB colour-changing options to transform your event atmosphere.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">RGB Options</span>
+                            <span class="ride-meta-item">Hire</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-card reveal" data-category="games">
+                    <span class="ride-card-badge games">Games</span>
+                    <div class="ride-card-img">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/carnival-food-400x300.jpg" alt="Carnival Food" loading="lazy">
+                    </div>
+                    <div class="ride-card-body">
+                        <h3>Carnival Food</h3>
+                        <p>Dry hire or staff-operated food stall options. Complete the carnival experience.</p>
+                        <div class="ride-meta">
+                            <span class="ride-meta-item">Dry Hire</span>
+                            <span class="ride-meta-item">Staffed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="section-inner">
+            <div class="cta-content reveal">
+                <h2>Interested in Hiring?</h2>
+                <p>Contact us for a quote</p>
+                <a href="contact.html" class="btn btn-primary">Get a Quote <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHARED: PARTNERS START -->
+    <div class="partners">
+        <div class="partners-inner">
+            <p class="partners-label">Trusted By Australia's Biggest Events</p>
+            <div class="partners-grid">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/ekka-amusement-rides.png" alt="EKKA Brisbane" loading="lazy" style="transition-delay:0.1s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/royal-easter-show-amusement-rides.png" alt="Royal Easter Show" loading="lazy" style="transition-delay:0.2s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/panyiri-show-rides.png" alt="Paniyiri Show" loading="lazy" style="transition-delay:0.3s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/gold-coast-show-rides.png" alt="Gold Coast Show" loading="lazy" style="transition-delay:0.4s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/ipswich-show-rides.png" alt="Ipswich Show" loading="lazy" style="transition-delay:0.5s">
+            </div>
+        </div>
+    </div>
+    <!-- SHARED: PARTNERS END -->
+
+    <!-- SHARED: FOOTER START -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <img src="https://www.qldamusementhire.com.au/wp-content/themes/qldamusementhire/images/Queensland-Amusement-Hire-logo.png" alt="Queensland Amusement Hire">
+                <p>Brisbane's largest amusement hire company. Over 60 years servicing festivals and events across Australia.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Home</a>
+                <a href="rides.html">Rides &amp; Entertainment</a>
+                <a href="school-fetes.html">School Fetes</a>
+                <a href="safety.html">Safety</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Popular Rides</h4>
+                <a href="rides.html">Wave Swinger</a>
+                <a href="rides.html">Giant Ferris Wheel</a>
+                <a href="rides.html">Dodgem Cars</a>
+                <a href="rides.html">Jumbo Slide</a>
+                <a href="rides.html">Tea Cups</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="tel:0415467929">0415 467 929</a>
+                <a href="https://www.qldamusementhire.com.au">Website</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Queensland Amusement Hire. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- SHARED: FOOTER END -->
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+
+    <!-- JAVASCRIPT -->
+    <script src="js/main.js"></script>
+    <script src="js/rides-filter.js"></script>
+
+</body>
+</html>

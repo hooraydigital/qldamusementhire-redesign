@@ -8,1800 +8,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        /* ============================================
-           CSS CUSTOM PROPERTIES
-           ============================================ */
-        :root {
-            --clr-primary: #1a1a2e;
-            --clr-secondary: #e94560;
-            --clr-accent: #ffbd39;
-            --clr-dark: #0f0f23;
-            --clr-light: #f5f0e8;
-            --clr-white: #ffffff;
-            --clr-blue: #16213e;
-            --clr-green: #00b894;
-            --clr-purple: #6c5ce7;
-
-            --ff-heading: 'Space Grotesk', sans-serif;
-            --ff-body: 'DM Sans', sans-serif;
-
-            --fs-xs: 0.75rem;
-            --fs-sm: 0.875rem;
-            --fs-base: 1rem;
-            --fs-md: 1.125rem;
-            --fs-lg: 1.25rem;
-            --fs-xl: 1.5rem;
-            --fs-2xl: 2rem;
-            --fs-3xl: 2.5rem;
-            --fs-4xl: 3.5rem;
-            --fs-5xl: 5rem;
-            --fs-6xl: 7rem;
-
-            --radius: 4px;
-            --border: 3px solid var(--clr-dark);
-            --border-thick: 5px solid var(--clr-dark);
-            --shadow-brutal: 6px 6px 0px var(--clr-dark);
-            --shadow-brutal-sm: 4px 4px 0px var(--clr-dark);
-            --shadow-brutal-lg: 8px 8px 0px var(--clr-dark);
-
-            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --transition-fast: 0.15s ease;
-        }
-
-        /* ============================================
-           RESET & BASE
-           ============================================ */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--ff-body);
-            font-size: var(--fs-base);
-            line-height: 1.6;
-            color: var(--clr-dark);
-            background-color: var(--clr-light);
-            overflow-x: hidden;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul { list-style: none; }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--ff-heading);
-            font-weight: 700;
-            line-height: 1.1;
-            text-transform: uppercase;
-        }
-
-        /* (Page loader removed) */
-
-        /* ============================================
-           SCROLL REVEAL
-           ============================================ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal-left.revealed {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal-right.revealed {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.85);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal-scale.revealed {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* ============================================
-           NAVIGATION
-           ============================================ */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: var(--clr-white);
-            border-bottom: var(--border);
-            transition: transform var(--transition), box-shadow var(--transition);
-        }
-
-        .nav.scrolled {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-
-        .nav-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0.75rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .nav-logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .nav-links a {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-sm);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.5rem 0.85rem;
-            border-radius: var(--radius);
-            border: 2px solid transparent;
-            transition: all var(--transition-fast);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            background: var(--clr-dark);
-            color: var(--clr-white);
-            border-color: var(--clr-dark);
-            transform: translate(-2px, -2px);
-            box-shadow: var(--shadow-brutal-sm);
-        }
-
-        .nav-links a.active {
-            background: var(--clr-secondary);
-            color: var(--clr-white);
-            border-color: var(--clr-dark);
-        }
-
-        .nav-cta {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-sm);
-            font-weight: 700;
-            text-transform: uppercase;
-            background: var(--clr-accent);
-            color: var(--clr-dark);
-            padding: 0.6rem 1.25rem;
-            border: var(--border);
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            white-space: nowrap;
-        }
-
-        .nav-cta:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: var(--shadow-brutal);
-        }
-
-        /* Mobile Menu Toggle */
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 0.5rem;
-            background: none;
-            border: none;
-        }
-
-        .nav-toggle span {
-            width: 28px;
-            height: 3px;
-            background: var(--clr-dark);
-            border-radius: 2px;
-            transition: all var(--transition);
-        }
-
-        .nav-toggle.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
-        }
-
-        .nav-toggle.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
-        }
-
-        /* ============================================
-           HERO SECTION
-           ============================================ */
-        .hero {
-            min-height: calc(100vh - 48px); /* leave room for the marquee to peek in */
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-            background: var(--clr-primary);
-            color: var(--clr-white);
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
-
-        .hero-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(26, 26, 46, 0.95) 0%,
-                rgba(233, 69, 96, 0.6) 50%,
-                rgba(26, 26, 46, 0.9) 100%
-            );
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text-area {}
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: var(--ff-heading);
-            font-size: var(--fs-sm);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            background: var(--clr-accent);
-            color: var(--clr-dark);
-            padding: 0.4rem 1rem;
-            border: 3px solid var(--clr-dark);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-brutal-sm);
-            margin-bottom: 1.5rem;
-            animation: badgeBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes badgeBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .hero-title {
-            font-size: var(--fs-6xl);
-            line-height: 0.95;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-title .highlight {
-            color: var(--clr-accent);
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-title .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 0.05em;
-            left: 0;
-            width: 100%;
-            height: 0.15em;
-            background: var(--clr-secondary);
-            transform: skewX(-12deg);
-        }
-
-        .hero-description {
-            font-size: var(--fs-lg);
-            line-height: 1.7;
-            max-width: 550px;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: var(--ff-heading);
-            font-size: var(--fs-base);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 1rem 2rem;
-            border: var(--border);
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: var(--clr-secondary);
-            color: var(--clr-white);
-            box-shadow: var(--shadow-brutal);
-        }
-
-        .btn-primary:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 10px 10px 0px var(--clr-dark);
-        }
-
-        .btn-secondary {
-            background: var(--clr-white);
-            color: var(--clr-dark);
-            box-shadow: var(--shadow-brutal);
-        }
-
-        .btn-secondary:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
-            background: var(--clr-accent);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .hero-stat {
-            text-align: center;
-            padding: 1.25rem 1.5rem;
-            background: rgba(255,255,255,0.1);
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: var(--radius);
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-stat-number {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-3xl);
-            font-weight: 700;
-            color: var(--clr-accent);
-            line-height: 1;
-        }
-
-        .hero-stat-label {
-            font-size: var(--fs-xs);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-top: 0.25rem;
-            opacity: 0.8;
-        }
-
-        .hero-image-area {
-            position: relative;
-        }
-
-        .hero-image-card {
-            border: var(--border-thick);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-brutal-lg);
-            transform: rotate(2deg);
-            transition: transform var(--transition);
-        }
-
-        .hero-image-card:hover {
-            transform: rotate(0deg) scale(1.02);
-        }
-
-        .hero-image-card img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-        }
-
-        /* Hero Slideshow */
-        .hero-slideshow {
-            position: relative;
-            border: var(--border-thick);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-brutal-lg);
-            transform: rotate(2deg);
-            transition: transform var(--transition);
-            aspect-ratio: 4/3;
-        }
-
-        .hero-slideshow:hover {
-            transform: rotate(0deg) scale(1.02);
-        }
-
-        .hero-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Kenburns subtle zoom on active slide */
-        .hero-slide.active img {
-            animation: kenburns 5s ease-in-out forwards;
-        }
-
-        @keyframes kenburns {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
-        }
-
-        /* Slide counter badge */
-        .slideshow-counter {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            z-index: 5;
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xs);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--clr-white);
-            background: rgba(0, 0, 0, 0.55);
-            padding: 0.3rem 0.65rem;
-            border-radius: var(--radius);
-            backdrop-filter: blur(4px);
-        }
-
-        /* Dot indicators */
-        .slideshow-dots {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .slideshow-dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.4);
-            border: 2px solid var(--clr-white);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            padding: 0;
-        }
-
-        .slideshow-dot.active {
-            background: var(--clr-accent);
-            border-color: var(--clr-accent);
-            transform: scale(1.25);
-            box-shadow: 0 0 8px rgba(255, 189, 57, 0.6);
-        }
-
-        .slideshow-dot:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.7);
-            transform: scale(1.15);
-        }
-
-        /* Progress bar under slideshow */
-        .slideshow-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            background: var(--clr-accent);
-            z-index: 5;
-            transition: width linear;
-        }
-
-        /* Prev / Next arrows */
-        .slideshow-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 5;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.45);
-            color: var(--clr-white);
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            border-radius: var(--radius);
-            cursor: pointer;
-            font-size: 1.1rem;
-            backdrop-filter: blur(4px);
-            transition: all var(--transition-fast);
-            opacity: 0;
-            padding: 0;
-            font-family: var(--ff-heading);
-        }
-
-        .hero-slideshow:hover .slideshow-nav {
-            opacity: 1;
-        }
-
-        .slideshow-nav:hover {
-            background: var(--clr-secondary);
-            border-color: var(--clr-secondary);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .slideshow-nav.prev { left: 0.75rem; }
-        .slideshow-nav.next { right: 0.75rem; }
-
-        .hero-floating-tag {
-            position: absolute;
-            background: var(--clr-accent);
-            color: var(--clr-dark);
-            font-family: var(--ff-heading);
-            font-weight: 700;
-            font-size: var(--fs-sm);
-            text-transform: uppercase;
-            padding: 0.5rem 1rem;
-            border: var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-brutal-sm);
-            white-space: nowrap;
-        }
-
-        .hero-floating-tag.tag-1 {
-            top: -15px;
-            right: -15px;
-            animation: floatTag1 3s ease-in-out infinite;
-        }
-
-        .hero-floating-tag.tag-2 {
-            bottom: 30px;
-            left: -20px;
-            background: var(--clr-green);
-            color: var(--clr-dark);
-            animation: floatTag2 4s ease-in-out infinite;
-        }
-
-        @keyframes floatTag1 {
-            0%, 100% { transform: translateY(0) rotate(3deg); }
-            50% { transform: translateY(-10px) rotate(-1deg); }
-        }
-
-        @keyframes floatTag2 {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(2deg); }
-        }
-
-        /* Hero Scroll Down Indicator */
-        .hero-scroll-down {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--clr-white);
-            text-decoration: none;
-            transition: all var(--transition);
-        }
-
-        .hero-scroll-down span {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            opacity: 0.7;
-            transition: opacity var(--transition);
-        }
-
-        .hero-scroll-down svg {
-            animation: scrollBounce 1.8s ease-in-out infinite;
-        }
-
-        .hero-scroll-down:hover span {
-            opacity: 1;
-        }
-
-        .hero-scroll-down:hover svg {
-            color: var(--clr-accent);
-        }
-
-        @keyframes scrollBounce {
-            0%, 100% { transform: translateY(0); opacity: 1; }
-            50% { transform: translateY(8px); opacity: 0.5; }
-        }
-
-        /* ============================================
-           MARQUEE / TICKER
-           ============================================ */
-        .marquee {
-            background: var(--clr-dark);
-            border-top: var(--border);
-            border-bottom: var(--border);
-            padding: 0.75rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .marquee-inner {
-            display: flex;
-            animation: marqueeScroll 25s linear infinite;
-            width: max-content;
-        }
-
-        .marquee-item {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xl);
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--clr-white);
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .marquee-item .dot {
-            width: 12px;
-            height: 12px;
-            background: var(--clr-secondary);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        @keyframes marqueeScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* ============================================
-           SECTION STYLES
-           ============================================ */
-        .section {
-            padding: 6rem 2rem;
-        }
-
-        .section-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-        }
-
-        .section-tag {
-            display: inline-block;
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xs);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--clr-secondary);
-            background: rgba(233, 69, 96, 0.1);
-            padding: 0.35rem 0.85rem;
-            border: 2px solid var(--clr-secondary);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: var(--fs-4xl);
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: var(--fs-lg);
-            max-width: 600px;
-            opacity: 0.7;
-            line-height: 1.6;
-        }
-
-        /* ============================================
-           SERVICES / WHAT WE DO
-           ============================================ */
-        .services {
-            background: var(--clr-white);
-            border-bottom: var(--border);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .service-card {
-            border: var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--clr-light);
-            transition: all var(--transition);
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: var(--shadow-brutal-lg);
-        }
-
-        .service-card:hover .service-card-img img {
-            transform: scale(1.08);
-        }
-
-        .service-card-img {
-            aspect-ratio: 4/3;
-            overflow: hidden;
-            border-bottom: var(--border);
-        }
-
-        .service-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .service-card-body {
-            padding: 1.5rem;
-        }
-
-        .service-card-number {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-5xl);
-            font-weight: 700;
-            color: rgba(0,0,0,0.06);
-            line-height: 1;
-            margin-bottom: -1rem;
-        }
-
-        .service-card h3 {
-            font-size: var(--fs-xl);
-            margin-bottom: 0.75rem;
-        }
-
-        .service-card p {
-            font-size: var(--fs-sm);
-            opacity: 0.7;
-            line-height: 1.6;
-        }
-
-        .service-card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: var(--ff-heading);
-            font-size: var(--fs-sm);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 1rem;
-            color: var(--clr-secondary);
-            transition: gap var(--transition);
-        }
-
-        .service-card:hover .service-card-link {
-            gap: 0.85rem;
-        }
-
-        .service-card:hover .service-card-link .icon-arrow {
-            transform: translateX(4px);
-        }
-
-        /* Inline SVG icon helpers */
-        .icon-arrow {
-            vertical-align: middle;
-            transition: transform var(--transition);
-            flex-shrink: 0;
-        }
-
-        .btn:hover .icon-arrow {
-            transform: translateX(4px);
-        }
-
-        .nav-cta svg,
-        .hero-badge svg,
-        .hero-floating-tag svg {
-            vertical-align: middle;
-            flex-shrink: 0;
-        }
-
-        .fete-feature-icon svg,
-        .safety-card-icon svg {
-            flex-shrink: 0;
-        }
-
-        /* ============================================
-           RIDES & ENTERTAINMENT
-           ============================================ */
-        .rides {
-            background: var(--clr-light);
-        }
-
-        .rides-filter {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .filter-btn {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-sm);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.5rem 1.25rem;
-            border: var(--border);
-            border-radius: var(--radius);
-            background: var(--clr-white);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--clr-dark);
-            color: var(--clr-white);
-            transform: translate(-2px, -2px);
-            box-shadow: var(--shadow-brutal-sm);
-        }
-
-        .rides-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .ride-card {
-            border: var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--clr-white);
-            transition: all var(--transition);
-            position: relative;
-        }
-
-        .ride-card:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: var(--shadow-brutal);
-        }
-
-        .ride-card:hover .ride-card-img img {
-            transform: scale(1.05);
-        }
-
-        .ride-card-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            z-index: 2;
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xs);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.3rem 0.7rem;
-            border: 2px solid var(--clr-dark);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-brutal-sm);
-        }
-
-        .ride-card-badge.thrill { background: var(--clr-secondary); color: var(--clr-white); }
-        .ride-card-badge.family { background: var(--clr-green); color: var(--clr-dark); }
-        .ride-card-badge.kids { background: var(--clr-accent); color: var(--clr-dark); }
-        .ride-card-badge.games { background: var(--clr-purple); color: var(--clr-white); }
-
-        .ride-card-img {
-            aspect-ratio: 4/3;
-            overflow: hidden;
-            border-bottom: var(--border);
-        }
-
-        .ride-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .ride-card-body {
-            padding: 1.25rem;
-        }
-
-        .ride-card h3 {
-            font-size: var(--fs-lg);
-            margin-bottom: 0.5rem;
-        }
-
-        .ride-card p {
-            font-size: var(--fs-sm);
-            opacity: 0.7;
-            margin-bottom: 0.75rem;
-        }
-
-        .ride-meta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .ride-meta-item {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.25rem 0.6rem;
-            background: var(--clr-light);
-            border: 2px solid rgba(0,0,0,0.1);
-            border-radius: var(--radius);
-        }
-
-        /* ============================================
-           SCHOOL FETES
-           ============================================ */
-        .school-fetes {
-            background: var(--clr-accent);
-            border-top: var(--border);
-            border-bottom: var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .school-fetes::before {
-            content: 'FETE';
-            position: absolute;
-            top: 50%;
-            right: -5%;
-            transform: translateY(-50%);
-            font-family: var(--ff-heading);
-            font-size: 20rem;
-            font-weight: 700;
-            color: rgba(0,0,0,0.05);
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .fete-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .fete-text .section-tag {
-            background: rgba(0,0,0,0.1);
-            border-color: var(--clr-dark);
-            color: var(--clr-dark);
-        }
-
-        .fete-text .section-title {
-            color: var(--clr-dark);
-        }
-
-        .fete-features {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            margin-top: 2rem;
-        }
-
-        .fete-feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            background: var(--clr-white);
-            padding: 1.25rem;
-            border: var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-brutal-sm);
-            transition: all var(--transition);
-        }
-
-        .fete-feature:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: var(--shadow-brutal);
-        }
-
-        .fete-feature-icon {
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--clr-accent);
-            border: 2px solid var(--clr-dark);
-            border-radius: var(--radius);
-            font-size: 1.5rem;
-        }
-
-        .fete-feature h4 {
-            font-size: var(--fs-base);
-            margin-bottom: 0.25rem;
-        }
-
-        .fete-feature p {
-            font-size: var(--fs-sm);
-            opacity: 0.7;
-        }
-
-        .fete-image-stack {
-            position: relative;
-        }
-
-        .fete-img-main {
-            border: var(--border-thick);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-brutal-lg);
-            transform: rotate(-2deg);
-            transition: transform var(--transition);
-        }
-
-        .fete-img-main:hover {
-            transform: rotate(0deg);
-        }
-
-        .fete-img-main img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-        }
-
-        /* ============================================
-           SAFETY SECTION
-           ============================================ */
-        .safety {
-            background: var(--clr-dark);
-            color: var(--clr-white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .safety::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(233,69,96,0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .safety .section-tag {
-            background: rgba(233,69,96,0.2);
-            border-color: var(--clr-secondary);
-            color: var(--clr-secondary);
-        }
-
-        .safety .section-subtitle {
-            color: rgba(255,255,255,0.6);
-        }
-
-        .safety-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .safety-card {
-            padding: 2rem;
-            border: 2px solid rgba(255,255,255,0.15);
-            border-radius: var(--radius);
-            background: rgba(255,255,255,0.05);
-            transition: all var(--transition);
-        }
-
-        .safety-card:hover {
-            border-color: var(--clr-secondary);
-            background: rgba(233,69,96,0.1);
-            transform: translateY(-4px);
-        }
-
-        .safety-card-icon {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--clr-secondary);
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: var(--radius);
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .safety-card h3 {
-            font-size: var(--fs-lg);
-            margin-bottom: 0.75rem;
-        }
-
-        .safety-card p {
-            font-size: var(--fs-sm);
-            opacity: 0.65;
-            line-height: 1.7;
-        }
-
-        .safety-highlight {
-            margin-top: 3rem;
-            text-align: center;
-            padding: 2rem;
-            border: 3px solid var(--clr-accent);
-            border-radius: var(--radius);
-            background: rgba(255,189,57,0.08);
-        }
-
-        .safety-highlight-number {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-5xl);
-            font-weight: 700;
-            color: var(--clr-accent);
-            line-height: 1;
-        }
-
-        .safety-highlight-text {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-lg);
-            text-transform: uppercase;
-            margin-top: 0.5rem;
-            letter-spacing: 0.05em;
-        }
-
-        /* ============================================
-           ABOUT / EXPERIENCE
-           ============================================ */
-        .about {
-            background: var(--clr-white);
-            border-top: var(--border);
-        }
-
-        .about-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image-area {
-            position: relative;
-        }
-
-        .about-img-main {
-            border: var(--border-thick);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-brutal-lg);
-        }
-
-        .about-img-main img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-        }
-
-        .about-years-badge {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            width: 120px;
-            height: 120px;
-            background: var(--clr-secondary);
-            border: var(--border-thick);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-brutal);
-            animation: spinBadge 10s linear infinite;
-        }
-
-        @keyframes spinBadge {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .about-years-badge .num {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-2xl);
-            font-weight: 700;
-            color: var(--clr-white);
-            line-height: 1;
-            animation: spinBadgeReverse 10s linear infinite;
-        }
-
-        .about-years-badge .label {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xs);
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--clr-white);
-            animation: spinBadgeReverse 10s linear infinite;
-        }
-
-        @keyframes spinBadgeReverse {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
-        }
-
-        .about-text p {
-            font-size: var(--fs-md);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            opacity: 0.8;
-        }
-
-        .about-venues {
-            margin-top: 2rem;
-        }
-
-        .about-venues h3 {
-            font-size: var(--fs-lg);
-            margin-bottom: 1rem;
-        }
-
-        .venue-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .venue-tag {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.4rem 0.85rem;
-            border: 2px solid var(--clr-dark);
-            border-radius: var(--radius);
-            background: var(--clr-light);
-            transition: all var(--transition-fast);
-        }
-
-        .venue-tag:hover {
-            background: var(--clr-dark);
-            color: var(--clr-white);
-            transform: translate(-2px, -2px);
-            box-shadow: var(--shadow-brutal-sm);
-        }
-
-        /* ============================================
-           PARTNER LOGOS
-           ============================================ */
-        .partners {
-            background: #FFF;
-            border-top: var(--border);
-            border-bottom: var(--border);
-            padding: 3rem 2rem;
-        }
-
-        .partners-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .partners-label {
-            font-family: var(--ff-heading);
-            font-size: var(--fs-sm);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            text-align: center;
-            margin-bottom: 2rem;
-            opacity: 0.5;
-        }
-
-        .partners-grid {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .partner-logo {
-            height: 60px;
-            opacity: 1;
-            transition: all var(--transition);
-        }
-
-        .partner-logo:hover {
-            transform: scale(1.1);
-        }
-
-        /* ============================================
-           CONTACT SECTION
-           ============================================ */
-        .contact {
-            background: var(--clr-primary);
-            color: var(--clr-white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255,189,57,0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .contact .section-tag {
-            background: rgba(255,189,57,0.15);
-            border-color: var(--clr-accent);
-            color: var(--clr-accent);
-        }
-
-        .contact .section-subtitle {
-            color: rgba(255,255,255,0.6);
-        }
-
-        .contact-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-info-card {
-            padding: 2rem;
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: var(--radius);
-            margin-bottom: 1.5rem;
-            transition: all var(--transition);
-        }
-
-        .contact-info-card:hover {
-            border-color: var(--clr-accent);
-            background: rgba(255,189,57,0.05);
-        }
-
-        .contact-info-card h3 {
-            font-size: var(--fs-base);
-            margin-bottom: 0.5rem;
-            color: var(--clr-accent);
-        }
-
-        .contact-info-card p {
-            font-size: var(--fs-lg);
-            opacity: 0.9;
-        }
-
-        .contact-info-card a {
-            color: var(--clr-white);
-            transition: color var(--transition-fast);
-        }
-
-        .contact-info-card a:hover {
-            color: var(--clr-accent);
-        }
-
-        .contact-form {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-        }
-
-        .contact-form h3 {
-            font-size: var(--fs-xl);
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-family: var(--ff-heading);
-            font-size: var(--fs-xs);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            font-family: var(--ff-body);
-            font-size: var(--fs-base);
-            color: var(--clr-white);
-            background: rgba(255,255,255,0.08);
-            border: 2px solid rgba(255,255,255,0.15);
-            border-radius: var(--radius);
-            transition: all var(--transition-fast);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--clr-accent);
-            background: rgba(255,255,255,0.12);
-            box-shadow: 0 0 0 3px rgba(255,189,57,0.2);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: var(--clr-accent);
-            color: var(--clr-dark);
-            border: var(--border);
-            box-shadow: var(--shadow-brutal);
-            margin-top: 0.5rem;
-        }
-
-        .btn-submit:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.4);
-        }
-
-        /* ============================================
-           FOOTER
-           ============================================ */
-        .footer {
-            background: var(--clr-dark);
-            color: var(--clr-white);
-            border-top: var(--border);
-        }
-
-        .footer-main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-brand p {
-            font-size: var(--fs-sm);
-            opacity: 0.6;
-            line-height: 1.7;
-            margin-top: 1rem;
-            max-width: 300px;
-        }
-
-        .footer-brand img {
-            height: 50px;
-            filter: brightness(10);
-        }
-
-        .footer-col h4 {
-            font-size: var(--fs-sm);
-            letter-spacing: 0.1em;
-            margin-bottom: 1.25rem;
-            color: var(--clr-accent);
-        }
-
-        .footer-col a {
-            display: block;
-            font-size: var(--fs-sm);
-            opacity: 0.6;
-            margin-bottom: 0.6rem;
-            transition: all var(--transition-fast);
-        }
-
-        .footer-col a:hover {
-            opacity: 1;
-            color: var(--clr-accent);
-            transform: translateX(4px);
-        }
-
-        .footer-bottom {
-            border-top: 2px solid rgba(255,255,255,0.1);
-            padding: 1.5rem 2rem;
-            text-align: center;
-        }
-
-        .footer-bottom p {
-            font-size: var(--fs-xs);
-            opacity: 0.4;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* ============================================
-           BACK TO TOP
-           ============================================ */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 900;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--clr-secondary);
-            color: var(--clr-white);
-            border: var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-brutal-sm);
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: all var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: var(--shadow-brutal);
-        }
-
-        /* ============================================
-           CURSOR TRAIL (desktop only)
-           ============================================ */
-        .cursor-dot {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--clr-secondary);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            mix-blend-mode: difference;
-        }
-
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
-        @media (max-width: 1024px) {
-            .hero-title { font-size: var(--fs-5xl); }
-            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
-            .hero-image-area { max-width: 500px; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .safety-grid { grid-template-columns: repeat(2, 1fr); }
-            .fete-content { grid-template-columns: 1fr; }
-            .about-layout { grid-template-columns: 1fr; }
-            .about-image-area { max-width: 500px; }
-            .contact-layout { grid-template-columns: 1fr; }
-            .footer-main { grid-template-columns: 1fr 1fr; gap: 2rem; }
-        }
-
-        @media (max-width: 768px) {
-            :root {
-                --fs-4xl: 2.5rem;
-                --fs-5xl: 3.5rem;
-                --fs-6xl: 4rem;
-            }
-
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: var(--clr-white);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 1rem;
-                z-index: 999;
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .nav-links a {
-                font-size: var(--fs-xl);
-                padding: 0.75rem 1.5rem;
-            }
-
-            .nav-toggle { display: flex; z-index: 1001; }
-            .nav-cta { display: none; }
-
-            .section { padding: 4rem 1.25rem; }
-            .section-title { font-size: var(--fs-3xl); }
-
-            .hero { min-height: auto; padding: 120px 0 60px; }
-            .hero-stats { gap: 1rem; }
-            .hero-stat { padding: 0.75rem 1rem; }
-            .hero-stat-number { font-size: var(--fs-2xl); }
-
-            .services-grid { grid-template-columns: 1fr; }
-            .safety-grid { grid-template-columns: 1fr; }
-            .rides-grid { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .footer-main { grid-template-columns: 1fr; }
-
-            .fete-image-stack { max-width: 400px; }
-            .about-image-area { max-width: 400px; }
-            .about-years-badge { width: 90px; height: 90px; bottom: -10px; right: -10px; }
-            .about-years-badge .num { font-size: var(--fs-xl); }
-
-            .school-fetes::before { font-size: 10rem; }
-        }
-
-        @media (max-width: 480px) {
-            :root {
-                --fs-4xl: 2rem;
-                --fs-5xl: 2.5rem;
-                --fs-6xl: 3rem;
-            }
-
-            .hero-actions { flex-direction: column; }
-            .hero-stats { flex-direction: column; gap: 0.75rem; }
-            .rides-filter { gap: 0.35rem; }
-            .filter-btn { font-size: var(--fs-xs); padding: 0.4rem 0.8rem; }
-            .partners-grid { gap: 1.5rem; }
-            .partner-logo { height: 40px; }
-        }
-
-        /* ============================================
-           SELECTION & SCROLLBAR
-           ============================================ */
-        ::selection {
-            background: var(--clr-secondary);
-            color: var(--clr-white);
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--clr-light);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--clr-dark);
-            border: 2px solid var(--clr-light);
-            border-radius: var(--radius);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--clr-secondary);
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <!-- CUSTOM CURSOR -->
     <div class="cursor-dot" id="cursorDot"></div>
 
-    <!-- NAVIGATION -->
+    <!-- SHARED: NAV START -->
     <nav class="nav" id="navbar">
         <div class="nav-inner">
-            <a href="#hero" class="nav-logo">
-                <img src="https://www.qldamusementhire.com.au/wp-content/themes/qldamusementhire/images/Queensland-Amusement-Hire-logo.png" alt="Queensland Amusement Hire Logo">
+            <a href="index.html" class="nav-logo">
+                <img src="https://www.qldamusementhire.com.au/wp-content/themes/qldamusementhire/images/Queensland-Amusement-Hire-logo.png" alt="Queensland Amusement Hire">
             </a>
             <div class="nav-links" id="navLinks">
-                <a href="#hero" class="active">Home</a>
-                <a href="#rides">Rides</a>
-                <a href="#school-fetes">School Fetes</a>
-                <a href="#safety">Safety</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+                <a href="index.html" class="active">Home</a>
+                <a href="rides.html">Rides</a>
+                <a href="school-fetes.html">School Fetes</a>
+                <a href="safety.html">Safety</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
             </div>
-            <a href="tel:0415467929" class="nav-cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0415 467 929</a>
+            <a href="tel:0415467929" class="nav-cta">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                0415 467 929
+            </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -1809,25 +39,26 @@
             </button>
         </div>
     </nav>
+    <!-- SHARED: NAV END -->
 
     <!-- HERO SECTION -->
     <section class="hero" id="hero">
         <div class="hero-bg">
-            <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/fete-ride-hire-brisbane.jpg" alt="Amusement rides at Brisbane festival" loading="eager">
+            <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/fete-ride-hire-brisbane.jpg" alt="Amusement rides at Brisbane event">
         </div>
         <div class="hero-content">
             <div class="hero-text-area">
                 <div class="hero-badge reveal"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Brisbane's Largest Amusement Hire</div>
                 <h1 class="hero-title reveal">
-                    Making Events<br>
+                    Making Events
                     <span class="highlight">Unforgettable</span>
                 </h1>
                 <p class="hero-description reveal">
-                    We supply unique attractions ranging from high-thrill spectaculars and all-round family fun to rides just for kids. Over 60 years of creating magical moments across Australia.
+                    Over 60 years of delivering world-class amusement rides and entertainment to festivals, school fetes, and special events across Australia.
                 </p>
                 <div class="hero-actions reveal">
-                    <a href="#rides" class="btn btn-primary">Explore Our Rides <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-                    <a href="#contact" class="btn btn-secondary">Get a Quote</a>
+                    <a href="rides.html" class="btn btn-primary">Explore Our Rides <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                    <a href="contact.html" class="btn btn-secondary">Get a Quote</a>
                 </div>
                 <div class="hero-stats reveal">
                     <div class="hero-stat">
@@ -1836,7 +67,7 @@
                     </div>
                     <div class="hero-stat">
                         <div class="hero-stat-number" data-count="19">0</div>
-                        <div class="hero-stat-label">Rides & Attractions</div>
+                        <div class="hero-stat-label">Rides &amp; Attractions</div>
                     </div>
                     <div class="hero-stat">
                         <div class="hero-stat-number" data-count="20">0</div>
@@ -1844,29 +75,30 @@
                     </div>
                 </div>
             </div>
+
             <div class="hero-image-area reveal-scale">
                 <div class="hero-slideshow" id="heroSlideshow">
-                    <!-- Slides -->
+                    <!-- Slideshow Images -->
                     <div class="hero-slide active">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/brisbane-amusement-ride-hire.jpg" alt="Brisbane amusement ride hire" loading="eager">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/brisbane-amusement-ride-hire.jpg" alt="Brisbane amusement ride hire">
                     </div>
                     <div class="hero-slide">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/fete-ride-hire-brisbane.jpg" alt="Fete ride hire Brisbane" loading="eager">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/fete-ride-hire-brisbane.jpg" alt="Fete ride hire Brisbane">
                     </div>
                     <div class="hero-slide">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/school-fete-ride-hire-brisbane.jpg" alt="School fete ride hire" loading="eager">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/school-fete-ride-hire-brisbane.jpg" alt="School fete ride hire Brisbane">
                     </div>
                     <div class="hero-slide">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/wave-swinger-400x300.jpg" alt="Wave Swinger ride" loading="lazy">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/wave-swinger-400x300.jpg" alt="Wave Swinger ride">
                     </div>
                     <div class="hero-slide">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/giant-ferris-wheel-hire-e1486272039300-400x300.jpg" alt="Giant Ferris Wheel" loading="lazy">
+                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/giant-ferris-wheel-hire-e1486272039300-400x300.jpg" alt="Giant Ferris Wheel">
                     </div>
 
-                    <!-- Counter badge -->
+                    <!-- Slideshow Controls -->
                     <span class="slideshow-counter" id="slideshowCounter">1 / 5</span>
 
-                    <!-- Arrows -->
+                    <!-- Navigation Arrows -->
                     <button class="slideshow-nav prev" id="slidePrev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
                     <button class="slideshow-nav next" id="slideNext" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
 
@@ -1879,13 +111,14 @@
                         <button class="slideshow-dot" data-slide="4" aria-label="Go to slide 5"></button>
                     </div>
 
-                    <!-- Progress bar -->
+                    <!-- Progress Bar -->
                     <div class="slideshow-progress" id="slideshowProgress"></div>
                 </div>
                 <div class="hero-floating-tag tag-1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/></svg> Thrill Rides</div>
                 <div class="hero-floating-tag tag-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Safety First</div>
             </div>
         </div>
+
         <a href="#services" class="hero-scroll-down">
             <span>Scroll Down</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
@@ -1905,7 +138,7 @@
             <div class="marquee-item"><span class="dot"></span>Alien Abduction</div>
             <div class="marquee-item"><span class="dot"></span>Jumbo Slide</div>
             <div class="marquee-item"><span class="dot"></span>Laughing Clowns</div>
-            <!-- Duplicate for seamless loop -->
+            <!-- Duplicate for seamless scroll -->
             <div class="marquee-item"><span class="dot"></span>Wave Swinger</div>
             <div class="marquee-item"><span class="dot"></span>Giant Ferris Wheel</div>
             <div class="marquee-item"><span class="dot"></span>Hurricane</div>
@@ -1928,7 +161,7 @@
                 <p class="section-subtitle">From high-thrill spectaculars to kid-friendly fun, we deliver unforgettable entertainment experiences across Australia.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card reveal" style="transition-delay: 0.1s">
+                <a href="rides.html" class="service-card reveal" style="transition-delay: 0.1s">
                     <div class="service-card-img">
                         <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/hurricane-1-e1486272183491-400x300.jpg" alt="Thrill rides at Brisbane event" loading="lazy">
                     </div>
@@ -1938,8 +171,8 @@
                         <p>Unique attractions ranging from high-thrill spectaculars and all-round family fun to rides just for kids. Something for everyone.</p>
                         <span class="service-card-link">View All Rides <svg class="icon-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     </div>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 0.2s">
+                </a>
+                <a href="school-fetes.html" class="service-card reveal" style="transition-delay: 0.2s">
                     <div class="service-card-img">
                         <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cairnsshow-162-400x300.jpg" alt="School fete amusement rides" loading="lazy">
                     </div>
@@ -1949,8 +182,8 @@
                         <p>We bring national-level event experience to Queensland school fundraising, with consultation on pricing strategy, marketing, and event layout.</p>
                         <span class="service-card-link">Learn More <svg class="icon-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     </div>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 0.3s">
+                </a>
+                <a href="contact.html" class="service-card reveal" style="transition-delay: 0.3s">
                     <div class="service-card-img">
                         <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/03/special-events-amusement-rides-400x300.jpg" alt="Special events and festivals" loading="lazy">
                     </div>
@@ -1960,12 +193,12 @@
                         <p>Music festivals, multicultural events, pop-up events, markets, and community events. We make every gathering extraordinary.</p>
                         <span class="service-card-link">Get In Touch <svg class="icon-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- RIDES & ENTERTAINMENT -->
+    <!-- FEATURED RIDES -->
     <section class="section rides" id="rides">
         <div class="section-inner">
             <div class="section-header reveal">
@@ -1974,16 +207,8 @@
                 <p class="section-subtitle">From adrenaline-pumping thrill rides to gentle family favourites, explore our full range of attractions.</p>
             </div>
 
-            <div class="rides-filter reveal">
-                <button class="filter-btn active" data-filter="all">All Rides</button>
-                <button class="filter-btn" data-filter="thrill">Thrill</button>
-                <button class="filter-btn" data-filter="family">Family</button>
-                <button class="filter-btn" data-filter="kids">Kids &amp; Inflatables</button>
-                <button class="filter-btn" data-filter="games">Games &amp; Extras</button>
-            </div>
-
             <div class="rides-grid" id="ridesGrid">
-                <!-- THRILL RIDES -->
+                <!-- Wave Swinger -->
                 <div class="ride-card reveal" data-category="thrill">
                     <span class="ride-card-badge thrill">Thrill</span>
                     <div class="ride-card-img">
@@ -1999,6 +224,7 @@
                     </div>
                 </div>
 
+                <!-- Giant Ferris Wheel -->
                 <div class="ride-card reveal" data-category="thrill">
                     <span class="ride-card-badge thrill">Thrill</span>
                     <div class="ride-card-img">
@@ -2014,97 +240,7 @@
                     </div>
                 </div>
 
-                <div class="ride-card reveal" data-category="thrill">
-                    <span class="ride-card-badge thrill">Thrill</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/hurricane-1-e1486272183491-400x300.jpg" alt="Hurricane ride" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Hurricane</h3>
-                        <p>Hoists 24 riders up a 12-metre tower for an adrenaline-pumping experience.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">300/hr</span>
-                            <span class="ride-meta-item">12m Tower</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ride-card reveal" data-category="thrill">
-                    <span class="ride-card-badge thrill">Thrill</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cairnsshow-128-400x300.jpg" alt="Big Whizzer ride" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Big Whizzer</h3>
-                        <p>The fastest of its type available for hire in Queensland.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">450/hr</span>
-                            <span class="ride-meta-item">Fastest in QLD</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ride-card reveal" data-category="thrill">
-                    <span class="ride-card-badge thrill">Thrill</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/round-up-1.jpg" alt="Round-up ride" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Round-Up</h3>
-                        <p>Classic thrill ride with incredible spinning force. Min height 120cm.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">400/hr</span>
-                            <span class="ride-meta-item">120cm+</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ride-card reveal" data-category="thrill">
-                    <span class="ride-card-badge thrill">Thrill</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cyber-party-ride-400x261.jpg" alt="Cyber-Party ride" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Cyber-Party</h3>
-                        <p>Dance caf&eacute; style thrill ride with pumping music and lights.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">400/hr</span>
-                            <span class="ride-meta-item">120cm+</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ride-card reveal" data-category="thrill">
-                    <span class="ride-card-badge thrill">Thrill</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/alien-abduction-ride-e1486274030413-400x300.jpg" alt="Alien Abduction Gravitron" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Alien Abduction</h3>
-                        <p>Gravitron experience with incredible centrifugal force. Min height 120cm.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">400/hr</span>
-                            <span class="ride-meta-item">Gravitron</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAMILY RIDES -->
-                <div class="ride-card reveal" data-category="family">
-                    <span class="ride-card-badge family">Family</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/Lets-dance-400x295.jpg" alt="Let's Dance Music Trip" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Let's Dance (Music Trip)</h3>
-                        <p>Our newest attraction with an immersive music and dance experience.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">300/hr</span>
-                            <span class="ride-meta-item">120cm+</span>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Dodgem Cars -->
                 <div class="ride-card reveal" data-category="family">
                     <span class="ride-card-badge family">Family</span>
                     <div class="ride-card-img">
@@ -2120,6 +256,7 @@
                     </div>
                 </div>
 
+                <!-- Tea Cups -->
                 <div class="ride-card reveal" data-category="family">
                     <span class="ride-card-badge family">Family</span>
                     <div class="ride-card-img">
@@ -2127,7 +264,7 @@
                     </div>
                     <div class="ride-card-body">
                         <h3>Tea Cups</h3>
-                        <p>A timeless carnival favourite the whole family can enjoy together.</p>
+                        <p>A gentle spinning ride perfect for the whole family. All ages welcome.</p>
                         <div class="ride-meta">
                             <span class="ride-meta-item">200/hr</span>
                             <span class="ride-meta-item">All Ages</span>
@@ -2135,37 +272,7 @@
                     </div>
                 </div>
 
-                <div class="ride-card reveal" data-category="family">
-                    <span class="ride-card-badge family">Family</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/cairnsshow-162-400x300.jpg" alt="Super Jet Coaster" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Super Jet Coaster</h3>
-                        <p>Exclusive to QAH. An exciting coaster experience for the whole family.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">Exclusive</span>
-                            <span class="ride-meta-item">&lt;100kg</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- KIDS & INFLATABLES -->
-                <div class="ride-card reveal" data-category="kids">
-                    <span class="ride-card-badge kids">Kids</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/kids-platform-ride-400x300.jpg" alt="Kids Platform ride" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Kids Platform</h3>
-                        <p>Gentle fun designed specifically for our youngest thrill-seekers.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">Young Kids</span>
-                            <span class="ride-meta-item">Gentle</span>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Jumbo Slide -->
                 <div class="ride-card reveal" data-category="kids">
                     <span class="ride-card-badge kids">Kids</span>
                     <div class="ride-card-img">
@@ -2173,7 +280,7 @@
                     </div>
                     <div class="ride-card-body">
                         <h3>Jumbo Slide</h3>
-                        <p>The largest inflatable slide available for hire in Queensland. Unlimited capacity.</p>
+                        <p>The largest slide available for hire in Queensland. Unlimited rides for all ages.</p>
                         <div class="ride-meta">
                             <span class="ride-meta-item">Largest in QLD</span>
                             <span class="ride-meta-item">Unlimited</span>
@@ -2181,37 +288,7 @@
                     </div>
                 </div>
 
-                <div class="ride-card reveal" data-category="kids">
-                    <span class="ride-card-badge kids">Kids</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/Heavy-Hauler-Slide-e1486270325614-400x300.jpg" alt="Heavy Hauler Slide" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Heavy Hauler Slide</h3>
-                        <p>Tonka-themed dump truck inflatable that kids absolutely love.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">Tonka Theme</span>
-                            <span class="ride-meta-item">Inflatable</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GAMES & EXTRAS -->
-                <div class="ride-card reveal" data-category="games">
-                    <span class="ride-card-badge games">Games</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/neptuneracer-1-400x300.jpg" alt="Neptune Racer game" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Neptune Racer</h3>
-                        <p>Interactive racing game experience that gets the competitive juices flowing.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">Interactive</span>
-                            <span class="ride-meta-item">All Ages</span>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Laughing Clowns -->
                 <div class="ride-card reveal" data-category="games">
                     <span class="ride-card-badge games">Games</span>
                     <div class="ride-card-img">
@@ -2219,88 +296,40 @@
                     </div>
                     <div class="ride-card-body">
                         <h3>Laughing Clowns</h3>
-                        <p>Set of 12 available on a profit-share basis. A timeless carnival classic.</p>
+                        <p>Classic carnival game that always draws a crowd. Profit share available.</p>
                         <div class="ride-meta">
                             <span class="ride-meta-item">12 Units</span>
                             <span class="ride-meta-item">Profit Share</span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="ride-card reveal" data-category="games">
-                    <span class="ride-card-badge games">Games</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/bazooka-bash.jpg" alt="Bazooka Bash game" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Bazooka Bash</h3>
-                        <p>Skill-based game using air technology. Perfect for all ages and skill levels.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">Skill Game</span>
-                            <span class="ride-meta-item">Air Tech</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ride-card reveal" data-category="games">
-                    <span class="ride-card-badge games">Games</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/festoon-light-hire.jpg" alt="Festoon Lighting" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Festoon Lighting</h3>
-                        <p>Traditional or RGB colour-changing options to transform your event atmosphere.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">RGB Options</span>
-                            <span class="ride-meta-item">Hire</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ride-card reveal" data-category="games">
-                    <span class="ride-card-badge games">Games</span>
-                    <div class="ride-card-img">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/carnival-food-400x300.jpg" alt="Carnival Food" loading="lazy">
-                    </div>
-                    <div class="ride-card-body">
-                        <h3>Carnival Food</h3>
-                        <p>Dry hire or staff-operated food stall options. Complete the carnival experience.</p>
-                        <div class="ride-meta">
-                            <span class="ride-meta-item">Dry Hire</span>
-                            <span class="ride-meta-item">Staffed</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="rides-cta reveal" style="text-align: center; margin-top: 3rem;">
+                <a href="rides.html" class="btn btn-primary">View All 19 Rides <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
         </div>
     </section>
 
-    <!-- SCHOOL FETES -->
+    <!-- SCHOOL FETES TEASER -->
     <section class="section school-fetes" id="school-fetes">
         <div class="section-inner">
-            <div class="fete-content">
-                <div class="fete-text">
-                    <div class="reveal">
-                        <span class="section-tag">School Fete Specialists</span>
-                        <h2 class="section-title">We Know The Secrets To Success</h2>
-                        <p style="opacity:0.8; margin-top:1rem; font-size: var(--fs-md);">We bring national-level event experience to Queensland school fundraising initiatives, emphasising quality equipment, professional staff, and financially sustainable event solutions.</p>
+            <div class="fete-layout">
+                <div class="fete-content">
+                    <div class="section-header reveal" style="text-align: left;">
+                        <span class="section-tag">School Fetes</span>
+                        <h2 class="section-title">Expert School<br>Fete Planning</h2>
+                        <p class="section-subtitle" style="max-width: none;">We bring national-level event experience to Queensland school fundraising, with consultation on pricing strategy, marketing, and event layout to maximise your fete's success.</p>
                     </div>
                     <div class="fete-features">
                         <div class="fete-feature reveal-left" style="transition-delay:0.1s">
                             <div class="fete-feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                             <div>
                                 <h4>Pricing &amp; Strategy</h4>
-                                <p>Assistance with pricing structures, package options, and presale tactics to maximise fundraising.</p>
+                                <p>Expert consultation on ticket pricing, ride selection, and event scheduling to maximise your fundraising revenue.</p>
                             </div>
                         </div>
                         <div class="fete-feature reveal-left" style="transition-delay:0.2s">
-                            <div class="fete-feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
-                            <div>
-                                <h4>Marketing Materials</h4>
-                                <p>Creation of posters, banners, and promotional collateral for your event promotion.</p>
-                            </div>
-                        </div>
-                        <div class="fete-feature reveal-left" style="transition-delay:0.3s">
                             <div class="fete-feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
                             <div>
                                 <h4>Event Layout &amp; Optimisation</h4>
@@ -2308,17 +337,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="fete-image-stack reveal-right">
-                    <div class="fete-img-main">
-                        <img src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/school-fete-ride-hire-brisbane.jpg" alt="School fete ride hire Brisbane" loading="lazy">
+                    <div class="reveal" style="margin-top: 2rem;">
+                        <a href="school-fetes.html" class="btn btn-primary">Learn More About School Fetes <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SAFETY SECTION -->
+    <!-- SAFETY TEASER -->
     <section class="section safety" id="safety">
         <div class="section-inner">
             <div class="section-header reveal">
@@ -2326,31 +353,17 @@
                 <h2 class="section-title">Your Safety Is<br>Our Priority</h2>
                 <p class="section-subtitle">Stringent maintenance programs and strict safety procedures ensure every ride is safe for your family.</p>
             </div>
-            <div class="safety-grid">
-                <div class="safety-card reveal" style="transition-delay:0.1s">
-                    <div class="safety-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-                    <h3>Daily Maintenance</h3>
-                    <p>Scheduled maintenance is carried out daily in accordance with manufacturer and engineer specifications to keep our rides in safe working order.</p>
-                </div>
-                <div class="safety-card reveal" style="transition-delay:0.2s">
-                    <div class="safety-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                    <h3>Trained Operators</h3>
-                    <p>All operators are trained and practice emergency evacuation procedures every time our rides are tested before opening to the public.</p>
-                </div>
-                <div class="safety-card reveal" style="transition-delay:0.3s">
-                    <div class="safety-card-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-                    <h3>Regular Inspections</h3>
-                    <p>Equipment undergoes routine assessments by engineers and Work Safe Government officials across Australia.</p>
-                </div>
-            </div>
             <div class="safety-highlight reveal">
                 <div class="safety-highlight-number" data-count="20">$0M</div>
                 <div class="safety-highlight-text">Public Liability Insurance Coverage</div>
             </div>
+            <div class="reveal" style="text-align: center; margin-top: 2rem;">
+                <a href="safety.html" class="btn btn-primary">Our Safety Standards <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT TEASER -->
     <section class="section about" id="about">
         <div class="section-inner">
             <div class="about-layout">
@@ -2366,124 +379,43 @@
                 <div class="about-text reveal-right">
                     <span class="section-tag">About Us</span>
                     <h2 class="section-title">Brisbane's Largest Amusement Hire Company</h2>
-                    <p>As Brisbane's largest amusement hire company, we've been servicing festivals and events all over Australia for over 60 years. Our expertise and professionalism has been developed through work at major Australian events.</p>
-                    <p>Our well-trained, presentable, and friendly staff create safe environments where families can make lasting memories. From the biggest music festivals to intimate school fetes, we bring the same level of dedication and fun to every event.</p>
-                    <div class="about-venues">
-                        <h3>Events We've Powered</h3>
-                        <div class="venue-tags">
-                            <span class="venue-tag">EKKA</span>
-                            <span class="venue-tag">Sydney Royal Easter Show</span>
-                            <span class="venue-tag">Paniyiri Greek Festival</span>
-                            <span class="venue-tag">Moomba Festival</span>
-                            <span class="venue-tag">Perth Royal Show</span>
-                            <span class="venue-tag">Canberra Royal Show</span>
-                            <span class="venue-tag">Adelaide Royal Show</span>
-                            <span class="venue-tag">Gold Coast Show</span>
-                            <span class="venue-tag">Ipswich Show</span>
-                            <span class="venue-tag">Toowoomba Show</span>
-                            <span class="venue-tag">Luna Park Sydney</span>
-                            <span class="venue-tag">Coffs Harbour Jetty Festival</span>
-                        </div>
+                    <p>As Brisbane's largest amusement hire company, we've been servicing festivals and events all over Australia for over 60 years. Our expertise and professionalism has been developed through work at major Australian events. Our well-trained, presentable, and friendly staff create safe environments where families can make lasting memories.</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="about.html" class="btn btn-primary">More About Us <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- OUR PEOPLE MARQUEE -->
-    <div class="marquee" style="background: var(--clr-secondary);">
-        <div class="marquee-inner" style="animation-duration: 20s;">
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Well Trained</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Presentable</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Friendly Staff</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Safety Focused</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Professional</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>60+ Years Experience</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Well Trained</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Presentable</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Friendly Staff</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Safety Focused</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>Professional</div>
-            <div class="marquee-item"><span class="dot" style="background: var(--clr-accent);"></span>60+ Years Experience</div>
-        </div>
-    </div>
-
-    <!-- PARTNER LOGOS -->
+    <!-- SHARED: PARTNERS START -->
     <div class="partners">
         <div class="partners-inner">
             <p class="partners-label">Trusted By Australia's Biggest Events</p>
             <div class="partners-grid">
-                <img class="partner-logo reveal-scale" src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/ekka-amusement-rides.png" alt="EKKA Brisbane" loading="lazy" style="transition-delay:0.1s">
-                <img class="partner-logo reveal-scale" src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/royal-easter-show-amusement-rides.png" alt="Royal Easter Show" loading="lazy" style="transition-delay:0.2s">
-                <img class="partner-logo reveal-scale" src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/panyiri-show-rides.png" alt="Paniyiri Show" loading="lazy" style="transition-delay:0.3s">
-                <img class="partner-logo reveal-scale" src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/gold-coast-show-rides.png" alt="Gold Coast Show" loading="lazy" style="transition-delay:0.4s">
-                <img class="partner-logo reveal-scale" src="https://www.qldamusementhire.com.au/wp-content/uploads/2017/02/ipswich-show-rides.png" alt="Ipswich Show" loading="lazy" style="transition-delay:0.5s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/ekka-amusement-rides.png" alt="EKKA Brisbane" loading="lazy" style="transition-delay:0.1s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/royal-easter-show-amusement-rides.png" alt="Royal Easter Show" loading="lazy" style="transition-delay:0.2s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/panyiri-show-rides.png" alt="Paniyiri Show" loading="lazy" style="transition-delay:0.3s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/gold-coast-show-rides.png" alt="Gold Coast Show" loading="lazy" style="transition-delay:0.4s">
+                <img class="partner-logo reveal-scale" src="http://www.qldamusementhire.com.au/wp-content/uploads/2017/02/ipswich-show-rides.png" alt="Ipswich Show" loading="lazy" style="transition-delay:0.5s">
             </div>
         </div>
     </div>
+    <!-- SHARED: PARTNERS END -->
 
-    <!-- CONTACT SECTION -->
-    <section class="section contact" id="contact">
-        <div class="section-inner">
-            <div class="section-header reveal">
-                <span class="section-tag">Get In Touch</span>
-                <h2 class="section-title" style="color: var(--clr-white);">Let's Make Your<br>Event Amazing</h2>
-                <p class="section-subtitle">We look forward to working with you on making your event a fundraising success!</p>
-            </div>
-            <div class="contact-layout">
-                <div class="contact-info reveal-left">
-                    <div class="contact-info-card">
-                        <h3>Call Us</h3>
-                        <p><a href="tel:0415467929">0415 467 929</a></p>
-                    </div>
-                    <div class="contact-info-card">
-                        <h3>Website</h3>
-                        <p><a href="https://www.qldamusementhire.com.au" target="_blank" rel="noopener">www.qldamusementhire.com.au</a></p>
-                    </div>
-                    <div class="contact-info-card">
-                        <h3>Social</h3>
-                        <p><a href="#" target="_blank" rel="noopener">Facebook &mdash; Queensland Amusement Hire</a></p>
-                    </div>
-                    <div class="contact-info-card">
-                        <h3>Service Areas</h3>
-                        <p>Queensland, NSW, Victoria, SA, WA &amp; ACT</p>
-                    </div>
-                </div>
-                <div class="contact-form reveal-right">
-                    <h3>Send Us An Enquiry</h3>
-                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" placeholder="Your name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="tel" id="phone" name="phone" placeholder="0400 000 000">
-                            </div>
-                            <div class="form-group">
-                                <label for="suburb">Suburb</label>
-                                <input type="text" id="suburb" name="suburb" placeholder="Your suburb">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your event..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-submit">Send Enquiry <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-                    </form>
-                </div>
+    <!-- CONTACT CTA STRIP -->
+    <section class="section contact-cta" id="contact-cta">
+        <div class="section-inner" style="text-align: center;">
+            <span class="section-tag">Get In Touch</span>
+            <h2 class="section-title" style="color: var(--clr-white);">Ready To Make Your<br>Event Unforgettable?</h2>
+            <p class="section-subtitle">Call us on <a href="tel:0415467929" style="color: var(--clr-accent); font-weight: 700;">0415 467 929</a> or send us an enquiry to get started.</p>
+            <div style="margin-top: 2rem;">
+                <a href="contact.html" class="btn btn-primary">Contact Us <svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- SHARED: FOOTER START -->
     <footer class="footer">
         <div class="footer-main">
             <div class="footer-brand">
@@ -2492,20 +424,20 @@
             </div>
             <div class="footer-col">
                 <h4>Navigation</h4>
-                <a href="#hero">Home</a>
-                <a href="#rides">Rides &amp; Entertainment</a>
-                <a href="#school-fetes">School Fetes</a>
-                <a href="#safety">Safety</a>
-                <a href="#about">About Us</a>
-                <a href="#contact">Contact Us</a>
+                <a href="index.html">Home</a>
+                <a href="rides.html">Rides &amp; Entertainment</a>
+                <a href="school-fetes.html">School Fetes</a>
+                <a href="safety.html">Safety</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
             </div>
             <div class="footer-col">
                 <h4>Popular Rides</h4>
-                <a href="#rides">Wave Swinger</a>
-                <a href="#rides">Giant Ferris Wheel</a>
-                <a href="#rides">Dodgem Cars</a>
-                <a href="#rides">Jumbo Slide</a>
-                <a href="#rides">Tea Cups</a>
+                <a href="rides.html">Wave Swinger</a>
+                <a href="rides.html">Giant Ferris Wheel</a>
+                <a href="rides.html">Dodgem Cars</a>
+                <a href="rides.html">Jumbo Slide</a>
+                <a href="rides.html">Tea Cups</a>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
@@ -2518,331 +450,13 @@
             <p>&copy; 2026 Queensland Amusement Hire. All rights reserved.</p>
         </div>
     </footer>
+    <!-- SHARED: FOOTER END -->
 
     <!-- BACK TO TOP -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
 
     <!-- JAVASCRIPT -->
-    <script>
-        // ============================================
-        // CUSTOM CURSOR (desktop only)
-        // ============================================
-        const cursorDot = document.getElementById('cursorDot');
-        if (window.matchMedia('(pointer: fine)').matches) {
-            document.addEventListener('mousemove', (e) => {
-                cursorDot.style.left = e.clientX - 4 + 'px';
-                cursorDot.style.top = e.clientY - 4 + 'px';
-                cursorDot.style.opacity = '1';
-            });
-            document.addEventListener('mouseleave', () => {
-                cursorDot.style.opacity = '0';
-            });
-        }
-
-        // ============================================
-        // NAVBAR SCROLL EFFECT
-        // ============================================
-        const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.scrollY;
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            lastScroll = currentScroll;
-        });
-
-        // ============================================
-        // MOBILE MENU TOGGLE
-        // ============================================
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('open');
-            navLinks.classList.toggle('open');
-        });
-
-        // Close mobile menu on link click
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('open');
-                navLinks.classList.remove('open');
-            });
-        });
-
-        // ============================================
-        // ACTIVE NAV LINK ON SCROLL
-        // ============================================
-        const sections = document.querySelectorAll('section[id]');
-        const navLinksAll = navLinks.querySelectorAll('a');
-
-        function updateActiveNav() {
-            const scrollY = window.scrollY + 200;
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                const sectionId = section.getAttribute('id');
-
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    navLinksAll.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === '#' + sectionId) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }
-
-        window.addEventListener('scroll', updateActiveNav);
-
-        // ============================================
-        // SCROLL REVEAL
-        // ============================================
-        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // ============================================
-        // COUNTER ANIMATION
-        // ============================================
-        const counterElements = document.querySelectorAll('[data-count]');
-
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = entry.target;
-                    const countTo = parseInt(target.getAttribute('data-count'));
-                    const prefix = target.textContent.startsWith('$') ? '$' : '';
-                    const suffix = target.textContent.endsWith('+') ? '+' : (target.textContent.endsWith('M') ? 'M' : '+');
-                    let current = 0;
-                    const increment = Math.ceil(countTo / 40);
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= countTo) {
-                            current = countTo;
-                            clearInterval(timer);
-                        }
-                        target.textContent = prefix + current + suffix;
-                    }, 40);
-                    counterObserver.unobserve(target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        counterElements.forEach(el => counterObserver.observe(el));
-
-        // ============================================
-        // RIDE FILTER
-        // ============================================
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const rideCards = document.querySelectorAll('.ride-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filter = btn.getAttribute('data-filter');
-
-                rideCards.forEach((card, index) => {
-                    const category = card.getAttribute('data-category');
-                    if (filter === 'all' || category === filter) {
-                        card.style.display = '';
-                        card.style.animation = `fadeInUp 0.4s ease ${index * 0.05}s both`;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // ============================================
-        // BACK TO TOP
-        // ============================================
-        const backToTop = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // ============================================
-        // FORM HANDLER
-        // ============================================
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('.btn-submit');
-            const originalText = btn.textContent;
-            btn.textContent = 'Sent! We\'ll be in touch.';
-            btn.style.background = 'var(--clr-green)';
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '';
-                e.target.reset();
-            }, 3000);
-        }
-
-        // ============================================
-        // FADE IN UP ANIMATION (for filter)
-        // ============================================
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = `
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(styleSheet);
-
-        // ============================================
-        // HERO SLIDESHOW
-        // ============================================
-        (() => {
-            const slideshow  = document.getElementById('heroSlideshow');
-            if (!slideshow) return;
-
-            const slides     = slideshow.querySelectorAll('.hero-slide');
-            const dots       = slideshow.querySelectorAll('.slideshow-dot');
-            const counter    = document.getElementById('slideshowCounter');
-            const progress   = document.getElementById('slideshowProgress');
-            const prevBtn    = document.getElementById('slidePrev');
-            const nextBtn    = document.getElementById('slideNext');
-            const total      = slides.length;
-            const INTERVAL   = 5000; // ms per slide
-            let current      = 0;
-            let timer        = null;
-            let progressAnim = null;
-
-            function goTo(index) {
-                // Wrap around
-                if (index >= total) index = 0;
-                if (index < 0) index = total - 1;
-
-                // Update slides
-                slides.forEach(s => s.classList.remove('active'));
-                slides[index].classList.add('active');
-
-                // Update dots
-                dots.forEach(d => d.classList.remove('active'));
-                dots[index].classList.add('active');
-
-                // Update counter
-                counter.textContent = (index + 1) + ' / ' + total;
-
-                current = index;
-                startProgress();
-            }
-
-            function next() { goTo(current + 1); }
-            function prev() { goTo(current - 1); }
-
-            function startProgress() {
-                // Reset progress bar
-                progress.style.transition = 'none';
-                progress.style.width = '0%';
-                // Force reflow
-                void progress.offsetWidth;
-                // Animate to 100%
-                progress.style.transition = 'width ' + INTERVAL + 'ms linear';
-                progress.style.width = '100%';
-            }
-
-            function startAutoplay() {
-                stopAutoplay();
-                timer = setInterval(next, INTERVAL);
-                startProgress();
-            }
-
-            function stopAutoplay() {
-                if (timer) { clearInterval(timer); timer = null; }
-            }
-
-            // Arrow buttons
-            prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
-            nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
-
-            // Dot buttons
-            dots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    goTo(parseInt(dot.getAttribute('data-slide')));
-                    startAutoplay();
-                });
-            });
-
-            // Pause on hover, resume on leave
-            slideshow.addEventListener('mouseenter', stopAutoplay);
-            slideshow.addEventListener('mouseleave', startAutoplay);
-
-            // Touch / swipe support
-            let touchStartX = 0;
-            slideshow.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].clientX;
-                stopAutoplay();
-            }, { passive: true });
-            slideshow.addEventListener('touchend', (e) => {
-                const diff = e.changedTouches[0].clientX - touchStartX;
-                if (Math.abs(diff) > 50) {
-                    if (diff < 0) next(); else prev();
-                }
-                startAutoplay();
-            }, { passive: true });
-
-            // Keyboard (when slideshow is focused / hovered)
-            slideshow.setAttribute('tabindex', '0');
-            slideshow.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') { next(); startAutoplay(); }
-                if (e.key === 'ArrowLeft')  { prev(); startAutoplay(); }
-            });
-
-            // Kick off
-            startAutoplay();
-        })();
-
-        // ============================================
-        // SMOOTH SCROLL FOR ANCHOR LINKS
-        // ============================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="js/main.js"></script>
+    <script src="js/slideshow.js"></script>
 </body>
 </html>
